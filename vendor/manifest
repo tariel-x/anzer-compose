@@ -1,0 +1,58 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/antlr/antlr4/runtime/Go/antlr",
+			"repository": "https://github.com/antlr/antlr4",
+			"vcs": "git",
+			"revision": "400f4bd4d65a6bfa2a02d65ffc7a6e2f7ab54fd2",
+			"branch": "master",
+			"path": "/runtime/Go/antlr",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/tariel-x/anzer/funcs",
+			"repository": "https://github.com/tariel-x/anzer",
+			"vcs": "git",
+			"revision": "0f3074e40f7aa29b92171e011c91ddffa6f1759d",
+			"branch": "master",
+			"path": "/funcs",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/tariel-x/anzer/listener",
+			"repository": "https://github.com/tariel-x/anzer",
+			"vcs": "git",
+			"revision": "0f3074e40f7aa29b92171e011c91ddffa6f1759d",
+			"branch": "master",
+			"path": "listener",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/tariel-x/anzer/parser",
+			"repository": "https://github.com/tariel-x/anzer",
+			"vcs": "git",
+			"revision": "0f3074e40f7aa29b92171e011c91ddffa6f1759d",
+			"branch": "master",
+			"path": "parser",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/tariel-x/anzer/types",
+			"repository": "https://github.com/tariel-x/anzer",
+			"vcs": "git",
+			"revision": "0f3074e40f7aa29b92171e011c91ddffa6f1759d",
+			"branch": "master",
+			"path": "types",
+			"notests": true
+		},
+		{
+			"importpath": "gopkg.in/yaml.v2",
+			"repository": "https://gopkg.in/yaml.v2",
+			"vcs": "git",
+			"revision": "5420a8b6744d3b0345ab293f6fcba19c978f1183",
+			"branch": "master",
+			"notests": true
+		}
+	]
+}
