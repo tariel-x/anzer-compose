@@ -1,0 +1,25 @@
+version: "3"
+services:
+  _fName_lName_0:
+    image: _fName_lName
+    container: _fName_lName_0
+  fName_0:
+    image: fName
+    container: fName_0
+    environment:
+      abc: "111"
+  init_0:
+    image: init
+    container: init_0
+    environment:
+      abc: "111"
+  lName_0:
+    image: lName
+    container: lName_0
+    environment:
+      abc: "111"
+  userAction_0:
+    image: userAction
+    container: userAction_0
+    environment:
+      abc: "111"
