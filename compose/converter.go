@@ -29,10 +29,17 @@ func addServices(set types.ServiceSet) map[string]Service {
 
 func makeService(source types.Service) (string, Service) {
 	uniqueName := strings.Replace(source.UniqueName, ".", "_", -1)
+	envs := source.Config.Envs
+	if envs == nil {
+		envs = map[string]string{}
+	}
+	if source.Config.EnvOut != "" {
+		envs[source.Config.EnvOut] = uniqueName
+	}
 	return uniqueName, Service{
 		Image:       source.Name,
 		Container:   uniqueName,
-		Environment: source.Config.Envs,
+		Environment: envs,
 	}
 }
 
