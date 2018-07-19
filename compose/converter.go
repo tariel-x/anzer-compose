@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+const DefaultEnvOut = "OUT"
+
 func Convert(graph types.SystemGraph) Compose {
 	compose := base()
 
@@ -35,6 +37,8 @@ func makeService(source types.Service) (string, Service) {
 	}
 	if source.Config.EnvOut != "" {
 		envs[source.Config.EnvOut] = uniqueName
+	} else {
+		envs[DefaultEnvOut] = uniqueName
 	}
 	return uniqueName, Service{
 		Image:       source.Name,
