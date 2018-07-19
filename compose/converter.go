@@ -7,11 +7,15 @@ import (
 
 const DefaultEnvOut = "OUT"
 
-func Convert(graph types.SystemGraph) Compose {
+type Config struct {
+	Registry string
+}
+
+func Convert(graph types.SystemGraph, conf Config) Compose {
 	compose := base()
 
 	for _, set := range graph.Services {
-		addition := addServices(set)
+		addition := addServices(set, conf)
 		for name, def := range addition {
 			compose.Services[name] = def
 		}
@@ -20,16 +24,16 @@ func Convert(graph types.SystemGraph) Compose {
 	return compose
 }
 
-func addServices(set types.ServiceSet) map[string]Service {
+func addServices(set types.ServiceSet, conf Config) map[string]Service {
 	addition := map[string]Service{}
 	for _, source := range set {
-		name, service := makeService(source)
+		name, service := makeService(source, conf)
 		addition[name] = service
 	}
 	return addition
 }
 
-func makeService(source types.Service) (string, Service) {
+func makeService(source types.Service, conf Config) (string, Service) {
 	uniqueName := strings.Replace(source.UniqueName, ".", "_", -1)
 	envs := source.Config.Envs
 	if envs == nil {
@@ -41,7 +45,7 @@ func makeService(source types.Service) (string, Service) {
 		envs[DefaultEnvOut] = uniqueName
 	}
 	return uniqueName, Service{
-		Image:       source.Name,
+		Image:       conf.Registry + source.Name,
 		Container:   uniqueName,
 		Environment: envs,
 	}

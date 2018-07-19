@@ -19,7 +19,7 @@ var (
 
 func main() {
 	if len(os.Args) < 3 {
-		fmt.Printf("Specify input and output or -d for debug\n")
+		fmt.Printf("Specify input, output or -d for debug and registry url\n")
 		return
 	}
 
@@ -34,7 +34,13 @@ func main() {
 	err = json.Unmarshal(in, &graph)
 	die(err)
 
-	definition := compose.Convert(graph)
+
+	conf := compose.Config{}
+	if len(os.Args) == 4 {
+		conf.Registry = os.Args[3]
+	}
+
+	definition := compose.Convert(graph, conf)
 	out, err := yaml.Marshal(definition)
 	die(err)
 
