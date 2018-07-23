@@ -17,6 +17,13 @@ var (
 	Debug = false
 )
 
+const (
+	ComposeBase            = "base.yml"
+	ComposeMQContainer     = "rmq"
+	ComposeMQConnectionEnv = "RMQ"
+	ComposeMQConnection    = "amqp://guest:guest@rmq:5671/"
+)
+
 func main() {
 	if len(os.Args) < 3 {
 		fmt.Printf("Specify input, output or -d for debug and registry url\n")
@@ -34,8 +41,15 @@ func main() {
 	err = json.Unmarshal(in, &graph)
 	die(err)
 
+	base, err := loadBase(ComposeBase)
+	die(err)
 
-	conf := compose.Config{}
+	conf := compose.Config{
+		Base:            base,
+		MQContainer:     ComposeMQContainer,
+		MQConnection:    ComposeMQConnection,
+		MQConnectionEnv: ComposeMQConnectionEnv,
+	}
 	if len(os.Args) == 4 {
 		conf.Registry = os.Args[3]
 	}
@@ -50,6 +64,16 @@ func main() {
 		err := ioutil.WriteFile(os.Args[2], out, 0644)
 		die(err)
 	}
+}
+
+func loadBase(name string) (compose.Compose, error) {
+	data, err := ioutil.ReadFile(name)
+	if err != nil {
+		return compose.Compose{}, err
+	}
+	base := compose.Compose{}
+	err = yaml.Unmarshal(data, &base)
+	return base, err
 }
 
 func die(err error) {
