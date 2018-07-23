@@ -1,25 +1,55 @@
 version: "3"
 services:
   _fName_lName_0:
-    image: _fName_lName
+    image: compose_service
     container: _fName_lName_0
+    depends_on:
+    - rmq
+    environment:
+      IN: ""
+      OUT: _fName_lName_0
+      RMQ: amqp://guest:guest@rmq:5671/
   fName_0:
     image: fName
     container: fName_0
+    depends_on:
+    - rmq
     environment:
+      RMQ: amqp://guest:guest@rmq:5671/
       abc: "111"
+      in: init_0
+      out: fName_0
   init_0:
     image: init
     container: init_0
+    depends_on:
+    - rmq
     environment:
+      RMQ: amqp://guest:guest@rmq:5671/
       abc: "111"
+      out: init_0
   lName_0:
     image: lName
     container: lName_0
+    depends_on:
+    - rmq
     environment:
+      RMQ: amqp://guest:guest@rmq:5671/
       abc: "111"
+      in: init_0
+      out: lName_0
+  rmq:
+    image: rabbitmq
+    container: rmq
+    ports:
+    - 15672:15672
   userAction_0:
     image: userAction
     container: userAction_0
+    depends_on:
+    - rmq
     environment:
+      RMQ: amqp://guest:guest@rmq:5671/
       abc: "111"
+      in: ""
+      out: userAction_0
