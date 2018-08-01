@@ -14,7 +14,7 @@
 			"importpath": "github.com/tariel-x/anzer/funcs",
 			"repository": "https://github.com/tariel-x/anzer",
 			"vcs": "git",
-			"revision": "0f3074e40f7aa29b92171e011c91ddffa6f1759d",
+			"revision": "5ebeb26b179886ee2bbd9d042647bb2400d881fc",
 			"branch": "master",
 			"path": "/funcs",
 			"notests": true
@@ -23,7 +23,7 @@
 			"importpath": "github.com/tariel-x/anzer/listener",
 			"repository": "https://github.com/tariel-x/anzer",
 			"vcs": "git",
-			"revision": "0f3074e40f7aa29b92171e011c91ddffa6f1759d",
+			"revision": "5ebeb26b179886ee2bbd9d042647bb2400d881fc",
 			"branch": "master",
 			"path": "listener",
 			"notests": true
@@ -32,7 +32,7 @@
 			"importpath": "github.com/tariel-x/anzer/parser",
 			"repository": "https://github.com/tariel-x/anzer",
 			"vcs": "git",
-			"revision": "0f3074e40f7aa29b92171e011c91ddffa6f1759d",
+			"revision": "5ebeb26b179886ee2bbd9d042647bb2400d881fc",
 			"branch": "master",
 			"path": "parser",
 			"notests": true
@@ -41,7 +41,7 @@
 			"importpath": "github.com/tariel-x/anzer/types",
 			"repository": "https://github.com/tariel-x/anzer",
 			"vcs": "git",
-			"revision": "0f3074e40f7aa29b92171e011c91ddffa6f1759d",
+			"revision": "5ebeb26b179886ee2bbd9d042647bb2400d881fc",
 			"branch": "master",
 			"path": "types",
 			"notests": true

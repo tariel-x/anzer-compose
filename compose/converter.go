@@ -9,6 +9,8 @@ const (
 	DefaultEnvOut          = "OUT"
 	DefaultEnvIn           = "IN"
 	DefaultProductionImage = "compose_service"
+	DefaultEnvType1Name    = "TYPE1"
+	DefaultEnvType2Name    = "TYPE2"
 )
 
 type Config struct {
@@ -75,6 +77,10 @@ func makeProductionService(source types.Service, conf Config) (string, Service) 
 	name, service := makeService(source, conf)
 
 	service.Image = DefaultProductionImage
+	if len(source.ProductionTypes) > 1 {
+		service.Environment[DefaultEnvType1Name] = source.ProductionTypes[0]
+		service.Environment[DefaultEnvType2Name] = source.ProductionTypes[1]
+	}
 
 	return name, service
 }

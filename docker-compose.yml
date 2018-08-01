@@ -9,6 +9,8 @@ services:
       IN: ""
       OUT: _fName_lName_0
       RMQ: amqp://guest:guest@rmq:5671/
+      TYPE1: TYPE1
+      TYPE2: TYPE2
   fName_0:
     image: fName
     container: fName_0
