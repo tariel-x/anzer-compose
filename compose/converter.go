@@ -88,7 +88,7 @@ func makeProductionService(source types.Service, conf Config) (string, Service) 
 }
 
 func setInput(dependency types.Dependency, sources types.Services, compose Compose) Compose {
-	original := strings.Split(dependency.To, ".")
+	original := strings.Split(dependency.From, ".")
 	originalFrom := original[0]
 	sourceEnvOut := sources[originalFrom][0].Config.EnvOut
 	if sourceEnvOut == "" {
@@ -118,6 +118,7 @@ func setInput(dependency types.Dependency, sources types.Services, compose Compo
 		in, ok := compose.Services[toName].Environment[sourceEnvIn]
 		if !ok || in == "" {
 			compose.Services[toName].Environment[sourceEnvIn] = outAddress
+			break
 		}
 	}
 	return compose

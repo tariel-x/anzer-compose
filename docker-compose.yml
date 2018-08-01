@@ -6,7 +6,8 @@ services:
     depends_on:
     - rmq
     environment:
-      IN: ""
+      IN1: fName_0
+      IN2: lName_0
       OUT: _fName_lName_0
       RMQ: amqp://guest:guest@rmq:5671/
       TYPE1: TYPE1
@@ -53,5 +54,5 @@ services:
     environment:
       RMQ: amqp://guest:guest@rmq:5671/
       abc: "111"
-      in: ""
+      in: _fName_lName_0
       out: userAction_0
