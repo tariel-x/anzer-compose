@@ -8,6 +8,8 @@ import (
 const (
 	DefaultEnvOut          = "OUT"
 	DefaultEnvIn           = "IN"
+	DefaultEnvProdIn1      = "IN1"
+	DefaultEnvProdIn2      = "IN2"
 	DefaultProductionImage = "compose_service"
 	DefaultEnvType1Name    = "TYPE1"
 	DefaultEnvType2Name    = "TYPE2"
@@ -95,16 +97,28 @@ func setInput(dependency types.Dependency, sources types.Services, compose Compo
 
 	original = strings.Split(dependency.To, ".")
 	originalTo := original[0]
-	sourceEnvIn := sources[originalTo][0].Config.EnvIn
-	if sourceEnvIn == "" {
-		sourceEnvIn = DefaultEnvIn
+	sourceEnvsIn := []string{}
+	if sources[originalTo][0].Type == types.TypeProduction {
+		sourceEnvsIn = []string{
+			DefaultEnvProdIn1,
+			DefaultEnvProdIn2,
+		}
+	} else {
+		sourceEnvsIn = []string{sources[originalTo][0].Config.EnvIn}
+		if len(sourceEnvsIn) == 0 {
+			sourceEnvsIn = []string{DefaultEnvIn}
+		}
 	}
 
 	fromName := strings.Replace(dependency.From, ".", "_", -1)
 	outAddress := compose.Services[fromName].Environment[sourceEnvOut]
 
 	toName := strings.Replace(dependency.To, ".", "_", -1)
-	compose.Services[toName].Environment[sourceEnvIn] = outAddress
-
+	for _, sourceEnvIn := range sourceEnvsIn {
+		in, ok := compose.Services[toName].Environment[sourceEnvIn]
+		if !ok || in == "" {
+			compose.Services[toName].Environment[sourceEnvIn] = outAddress
+		}
+	}
 	return compose
 }
