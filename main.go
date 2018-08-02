@@ -21,7 +21,7 @@ const (
 	ComposeBase            = "base.yml"
 	ComposeMQContainer     = "rmq"
 	ComposeMQConnectionEnv = "RMQ"
-	ComposeMQConnection    = "amqp://guest:guest@rmq:5671/"
+	ComposeMQConnection    = "amqp://guest:guest@rmq:5672/"
 )
 
 func main() {

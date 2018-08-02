@@ -69,6 +69,7 @@ func makeService(source types.Service, conf Config) (string, Service) {
 	envs[conf.MQConnectionEnv] = conf.MQConnection
 	return uniqueName, Service{
 		Image:       conf.Registry + source.Name,
+		Restart:     "on-failure",
 		Container:   uniqueName,
 		Environment: envs,
 		DependsOn:   []string{conf.MQContainer},
@@ -77,7 +78,7 @@ func makeService(source types.Service, conf Config) (string, Service) {
 
 func makeProductionService(source types.Service, conf Config) (string, Service) {
 	name, service := makeService(source, conf)
-
+	service.Container = service.Container[1:]
 	service.Image = DefaultProductionImage
 	if len(source.ProductionTypes) > 1 {
 		service.Environment[DefaultEnvType1Name] = source.ProductionTypes[0]

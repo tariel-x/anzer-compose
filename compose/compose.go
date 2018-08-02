@@ -15,6 +15,7 @@ type Compose struct {
 type Service struct {
 	Image       string            `yaml:"image"`
 	Container   string            `yaml:"container_name"`
+	Restart     string            `yaml:"restart"`
 	Ports       []string          `yaml:"ports,omitempty"`
 	Networks    []string          `yaml:"networks,omitempty"`
 	DependsOn   []string          `yaml:"depends_on,omitempty"`
