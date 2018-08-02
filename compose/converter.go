@@ -104,9 +104,10 @@ func setInput(dependency types.Dependency, sources types.Services, compose Compo
 			DefaultEnvProdIn2,
 		}
 	} else {
-		sourceEnvsIn = []string{sources[originalTo][0].Config.EnvIn}
-		if len(sourceEnvsIn) == 0 {
+		if sources[originalTo][0].Config.EnvIn == "" {
 			sourceEnvsIn = []string{DefaultEnvIn}
+		} else {
+			sourceEnvsIn = []string{sources[originalTo][0].Config.EnvIn}
 		}
 	}
 
