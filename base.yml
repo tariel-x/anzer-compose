@@ -2,6 +2,6 @@ version: "3"
 services:
   rmq:
     image: rabbitmq
-    container: rmq
+    container_name: rmq
     ports:
       - "15672:15672"

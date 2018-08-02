@@ -14,7 +14,7 @@ type Compose struct {
 
 type Service struct {
 	Image       string            `yaml:"image"`
-	Container   string            `yaml:"container"`
+	Container   string            `yaml:"container_name"`
 	Ports       []string          `yaml:"ports,omitempty"`
 	Networks    []string          `yaml:"networks,omitempty"`
 	DependsOn   []string          `yaml:"depends_on,omitempty"`
